@@ -1,0 +1,240 @@
+/* Includes parts of Andy Bell's Modern CSS Reset: https://piccalil.li/blog/a-modern-css-reset/ */
+
+@import url('https://fonts.googleapis.com/css2?family=Overpass:wght@400;700&display=swap');
+
+:root {
+  --ff-body: 'Overpass', sans-serif;
+
+  --fs-300: 0.813rem;
+  --fs-400: 0.875rem;
+  --fs-600: 1.5rem;
+
+  --clr-primary: hsl(25, 97%, 53%);
+
+  --clr-neutral-100: hsl(0, 0%, 100%);
+  --clr-neutral-300: hsl(217, 12%, 63%);
+  --clr-neutral-400: hsl(216, 12%, 54%);
+  --clr-neutral-500: hsl(213, 19%, 18%);
+  --clr-neutral-600: hsl(215, 22%, 15%);
+  --clr-neutral-700: hsl(215, 27%, 12%);
+  --clr-neutral-900: hsl(216, 12%, 8%);
+}
+
+/* Box sizing rules */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+/* Set core root defaults */
+html:focus-within {
+  scroll-behavior: smooth;
+}
+
+/* Set core body defaults */
+body {
+  min-height: 100vh;
+  text-rendering: optimizeSpeed;
+  background-color: var(--clr-neutral-900);
+  color: var(--clr-neutral-100);
+  font-size: var(--fs-300);
+  font-family: var(--ff-body);
+  font-weight: 400;
+  line-height: 1.6;
+  letter-spacing: 0.02em;
+  display: grid;
+  place-items: center;
+}
+
+@media (min-width: 800px) {
+  body {
+    font-size: var(--fs-400);
+  }
+}
+
+/* Remove default margin */
+body,
+h2,
+p {
+  margin: 0;
+}
+
+h2 {
+  margin-bottom: 0.5rem;
+  font-weight: 400;
+  font-size: var(--fs-600);
+}
+
+p {
+  margin-bottom: 1.6rem;
+}
+
+/* Make images easier to work with */
+img {
+  max-width: 100%;
+  display: block;
+}
+
+/* Remove all animations, transitions and smooth scroll for people that prefer not to see them */
+@media (prefers-reduced-motion: reduce) {
+  html:focus-within {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* Card */
+.card {
+  background-color: var(--clr-neutral-700);
+  background-image: linear-gradient(
+    var(--clr-neutral-600),
+    var(--clr-neutral-700)
+  );
+  padding: 1.5rem;
+  border-radius: 1rem;
+  width: min(24rem, 100% - 3rem);
+}
+
+.card--thankyou {
+  text-align: center;
+}
+
+.card__intro {
+  color: var(--clr-neutral-400);
+}
+
+/* Illustration */
+.illus {
+  margin: 0 auto 1.6rem;
+}
+
+/* Ratings */
+.ratings {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 1.6rem;
+}
+
+.rating,
+.star {
+  display: grid;
+  place-content: center;
+  padding: 0;
+  width: 3.33em;
+  height: 3.33em;
+  border-radius: 100vh;
+  background-color: var(--clr-neutral-500);
+  color: var(--clr-neutral-400);
+}
+
+.rating {
+  position: relative;
+  overflow: hidden;
+  z-index: 1;
+  transition: color 0.4s;
+}
+
+.rating:hover {
+  color: var(--clr-neutral-100);
+}
+
+.rating--active,
+.rating:active {
+  background-color: var(--clr-neutral-400);
+  color: var(--clr-neutral-100);
+}
+
+.rating input {
+  position: absolute;
+  cursor: pointer;
+  opacity: 0;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  border: 0;
+}
+
+.rating::after {
+  content: '';
+  background-color: var(--clr-primary);
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  opacity: 0;
+  z-index: -1;
+  transition: opacity 0.4s;
+}
+
+.rating:hover:not(:active, .rating--active)::after {
+  opacity: 1;
+}
+
+/* Star */
+.star {
+  margin-bottom: 1rem;
+}
+
+.star img {
+  display: inline;
+}
+
+/* Button */
+.btn {
+  font: inherit;
+  display: block;
+  width: 100%;
+  border-radius: 100vh;
+  overflow: hidden;
+  padding: 0.7em 0;
+  border: 0;
+  cursor: pointer;
+  background-color: var(--clr-primary);
+  color: var(--clr-neutral-100);
+  text-transform: uppercase;
+  text-align: center;
+  text-decoration: none;
+  letter-spacing: 0.15em;
+  position: relative;
+  z-index: 1;
+  transition: color 0.4s;
+}
+
+.btn::after {
+  content: '';
+  background-color: var(--clr-neutral-100);
+  padding: inherit;
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  opacity: 0;
+  z-index: -1;
+  transition: opacity 0.4s;
+}
+
+.btn:hover {
+  color: var(--clr-primary);
+}
+
+.btn:hover::after {
+  opacity: 1;
+}
+
+/* Result */
+.result {
+  display: inline-block;
+  border-radius: 100vh;
+  color: var(--clr-primary);
+  background-color: var(--clr-neutral-500);
+  padding: 0.5em 1em;
+}
